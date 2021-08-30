@@ -18,10 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
-      uses: actions/checkout@v2
-      with:
-        path: registry-repo
-    
+      uses: actions/checkout@v2    
     - name: Trigger Deploy to Staging
       run: |
         echo ${{ github.event.client_payload.repo }}
