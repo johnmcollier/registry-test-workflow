@@ -1,0 +1,31 @@
+#
+# Copyright (c) 2021 Red Hat, Inc.
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+#
+# SPDX-License-Identifier: EPL-2.0
+#
+name: CI
+
+on:
+  repository_dispatch:
+    types: [build]
+
+jobs:
+  build:
+    name: Check registry build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+      with:
+        path: registry-repo
+    
+    - name: Trigger Deploy to Staging
+      run: |
+        echo ${{ github.event.client_payload.repo }}
+        echo ${{ github.event.client_payload.sha }}
+        #lastCommit="$(git log -1 --format=%H)"
+        #git commit -m "Trigger deploy based on devfile/registry-support@${{ github.event.client_payload.sha }}"
+        #git push "https://devfile-ci-robot:${{secrets.GITHUB_CI_SECRET}}@github.com/johnmcollier/registry-test-workflow"
