@@ -23,5 +23,7 @@ jobs:
       run: |
         echo ${{ github.event.client_payload.repo }}
         echo ${{ github.event.client_payload.sha }}
+        git config --global user.email "jcollier@redhat.com"
+        git config --global user.name "John Collier"
         git commit --allow-empty -m "Trigger deploy based on johnmcollier/${{ github.event.client_payload.repo }}@${{ github.event.client_payload.sha }}"
         git push "https://johnmcollier:${{secrets.GITHUB_CI_SECRET}}@github.com/johnmcollier/registry-test-workflow"
