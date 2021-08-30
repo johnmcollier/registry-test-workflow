@@ -26,6 +26,5 @@ jobs:
       run: |
         echo ${{ github.event.client_payload.repo }}
         echo ${{ github.event.client_payload.sha }}
-        #lastCommit="$(git log -1 --format=%H)"
-        #git commit -m "Trigger deploy based on devfile/registry-support@${{ github.event.client_payload.sha }}"
-        #git push "https://devfile-ci-robot:${{secrets.GITHUB_CI_SECRET}}@github.com/johnmcollier/registry-test-workflow"
+        git commit --allow-empty -m "Trigger deploy based on johnmcollier/${{ github.event.client_payload.repo }}@${{ github.event.client_payload.sha }}"
+        git push "https://johnmcollier:${{secrets.GITHUB_CI_SECRET}}@github.com/johnmcollier/registry-test-workflow"
